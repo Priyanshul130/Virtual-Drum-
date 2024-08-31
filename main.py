@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from playsound import playsound
 
-#region cordinates
+
 
 k_top,k_bottom,k_left,k_right=340,440,540,640#kick drum
 
