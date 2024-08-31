@@ -54,7 +54,7 @@ while True:
     blue_mask = cv2.morphologyEx(blue_mask, cv2.MORPH_OPEN, slider)
     blue_mask = cv2.dilate(blue_mask, slider, iterations=1)
 
-    #find contour in the image
+ 
     (cnts,_) = cv2.findContours(blue_mask.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
     #print(cnts)
 
@@ -90,7 +90,7 @@ while True:
             elif center[0]>=s1_left and center[0]<=s1_right and center[1]>=s1_top and center[1]<=s1_bottom:
                 playsound("snare.mp3")
     
-    #get the three drum region(live screen)
+  
     reg_kick = frame[k_top:k_bottom, k_left:k_right]
     reg_hithat = frame[h_top:h_bottom, h_left:h_right]
     reg_snare = frame[s_top:s_bottom, s_left:s_right]
@@ -100,7 +100,7 @@ while True:
     reg_snare1 = frame[s1_top:s1_bottom, s1_left:s1_right]
 
 
-    #add drums on live screen
+
     frame[k_top:k_bottom,k_left:k_right]=cv2.addWeighted(reg_kick,0.60,kick_drum,0.40,0.0)
 
     frame[h_top:h_bottom,h_left:h_right]=cv2.addWeighted(reg_hithat,0.60,hithat_drum,0.40,0.0)
@@ -115,16 +115,16 @@ while True:
     frame[s1_top:s1_bottom,s1_left:s1_right]=cv2.addWeighted(reg_snare1,0.60,snare_drum,0.40,0.0)
     
 
-    #display the frame
+
     cv2.namedWindow("virtual drum",cv2.WINDOW_AUTOSIZE)
     cv2.imshow("virtual drum",frame)
 
-    #if user press (q) quit the programe
+
     if cv2.waitKey(1)==ord("q"):
         break
 
 
-#release the camera
+
 cam.release()
 cv2.destroyAllWindows()
     
