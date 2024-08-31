@@ -21,7 +21,7 @@ h1_top,h1_bottom,h1_left,h1_right=480,580,400,500#hit hat drum 1
 s1_top,s1_bottom,s1_left,s1_right=480,580,850,950#snare drum 1
 
 
-#get refrence to camera
+
 cam=cv2.VideoCapture(0)
 
 snare_drum=cv2.imread("snare_drum.png")
@@ -33,25 +33,22 @@ kick_drum=cv2.resize(kick_drum,(k_bottom-k_top, k_right-k_left))
 hithat_drum=cv2.imread("hithat_drum.jpg")
 hithat_drum=cv2.resize(hithat_drum,(h_bottom-h_top, h_right-h_left))
 
-#color to detect drum stick
 lower=np.array([100,60,60])
 upper=np.array([140,255,255])
 
-#define a 5*5 slider for erosion and dilation
 slider = np.ones((5, 5), np.uint8)
 
 
 
-#loop till user press q
 
 while True:
-    #read a frame from a camera
+
     status,frame=cam.read()
     frame=cv2.flip(frame,1)
     frame=cv2.resize(frame,(1280,720))
     
     hsv=cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
-    #determine which pixel fall within the blue boundries
+
     blue_mask=cv2.inRange(hsv,lower,upper)
     blue_mask = cv2.erode(blue_mask, slider, iterations=2)
     blue_mask = cv2.morphologyEx(blue_mask, cv2.MORPH_OPEN, slider)
