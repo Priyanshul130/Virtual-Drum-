@@ -1,3 +1,7 @@
+# DEVELOPED BY <PRIYANSHUL SHARMA>
+#webpage Priyanshul.is-a.dev
+
+
 import cv2
 import numpy as np
 from playsound import playsound
