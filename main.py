@@ -60,18 +60,17 @@ while True:
 
     center=None
     if cnts is not None:
-        #check to see if any contor were found
+      
         if len(cnts)>0:
-            #will assume its revelant contor at index 0
+         
             cnt=cnts[0]
-            #get the radious of the enclosing circlr around the found contor
+     
             ((x, y), radius) = cv2.minEnclosingCircle(cnt)
             
-            #draw the cicle around the contour
             cv2.circle(frame, (int(x), int(y)), int(radius), (0, 0, 0), 2)
             M = cv2.moments(cnt)
             center = (int(M['m10'] / M['m00']), int(M['m01'] / M['m00']))
-            # if tounching drums
+ 
             if center[0]>=k_left and center[0]<=k_right and center[1]>=k_top and center[1]<=k_bottom:
                 playsound("kick.mp3")
 
